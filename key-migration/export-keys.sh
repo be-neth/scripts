@@ -5,7 +5,7 @@ if ! cd "$1"; then
     exit 1
 fi
 
-for x in platform media shared; do
+for x in platform media shared networkstack; do
     echo ${x}_key_release=\"$(openssl x509 -pubkey -noout -in $x.x509.pem | grep -v '-' | tr -d '\n')\"
     echo ${x}_cert_release=\"$(openssl x509 -outform der -in $x.x509.pem | xxd -p  | tr -d '\n')\"
 done
